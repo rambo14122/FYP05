@@ -143,7 +143,8 @@
     <!--tableAllFetched-->
     <div *ngIf="groupProvider.userGroupId==null||groupProvider.userGroupId==''" class="balloonContainer">
       <div class="balloon">
-        <img src="{{userProvider.userTableInfo[userProvider.getUid()].photoUrl}}">
+        <img *ngIf="userProvider.userTableInfo[userProvider.getUid()]!=null"
+             src="{{userProvider.userTableInfo[userProvider.getUid()].photoUrl}}">
         {{userProvider.userTableInfo[userProvider.getUid()].name}}
       </div>
     </div>
@@ -168,8 +169,17 @@
         <div class="balloonContainer" *ngIf="groupProvider.groupTableInfo[groupProvider.userGroupId]!=null">
           <div class="balloon"
                *ngFor="let memberId of groupProvider.groupTableInfo[groupProvider.userGroupId].members">
-            <img src="{{userProvider.userTableInfo[memberId].photoUrl}}">
-            {{userProvider.userTableInfo[memberId].name}}
+            <img *ngIf="userProvider.userTableInfo[memberId]!=null
+                  &&userProvider.userTableInfo[memberId]!=undefined
+                  &&userProvider.userTableInfo[memberId].name!=null
+                  &&userProvider.userTableInfo[memberId].photoUrl!=null"
+                 src={{userProvider.userTableInfo[memberId].photoUrl}}>
+            <span *ngIf="userProvider.userTableInfo[memberId]!=null
+                  &&userProvider.userTableInfo[memberId]!=undefined
+                  &&userProvider.userTableInfo[memberId].name!=null
+                  &&userProvider.userTableInfo[memberId].photoUrl!=null">
+              {{userProvider.userTableInfo[memberId].name}}
+            </span>
           </div>
 
         </div>
@@ -241,7 +251,6 @@
     &&statusProvider.groupStatus.startTime!=null
     &&statusProvider.groupStatus.puzzles!=null)">
         <!--group started-->
-
 
         <div *ngFor="let puzzleId of statusProvider.puzzleStatusKeys">
           <!--group solved-->

@@ -35,7 +35,7 @@ export class GameProvider {
     });
   }
 
-  sortLocation() {
+    sortLocation() {
     this.gameTableInfoKeys.sort((locationId1, locationId2): number => {
       if (this.gameTableInfo[locationId1].order < this.gameTableInfo[locationId2].order)
         return -1;

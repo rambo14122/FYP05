@@ -169,7 +169,7 @@ export class StatusProvider {
     }
   }
 
-  changePoint(point) {
+    changePoint(point) {
     var updatedPoint = point + this.groupStatus.point;
     var groupTemp = {} as GroupStatus;
     groupTemp.point = updatedPoint;
